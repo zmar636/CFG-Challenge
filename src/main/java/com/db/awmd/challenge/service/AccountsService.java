@@ -56,13 +56,11 @@ public class AccountsService {
               " does not have sufficient funds to perform a transfer of " + amount);
     }
 
-    BigDecimal fromAccountBeforeDebt = fromAccount.getBalance();
     synchronized (fromAccount) {
       fromAccount.setBalance(fromAccount.getBalance().subtract(amount));
     }
 
     Account accountTo = getAccount(accountToId);
-    BigDecimal toAccountBeforeDeposit = accountTo.getBalance();
 
     synchronized (accountTo) {
       accountTo.setBalance(accountTo.getBalance().add(amount));
@@ -70,7 +68,5 @@ public class AccountsService {
 
     notificationService.notifyAboutTransfer(fromAccount, "Debit of " + amount + " to account: " + accountToId);
     notificationService.notifyAboutTransfer(accountTo, "Deposit of " + amount + " from account: " + accountFromId);
-
-    log.info(toAccountBeforeDeposit + "-"  + getAccount(accountToId).getBalance());
   }
 }

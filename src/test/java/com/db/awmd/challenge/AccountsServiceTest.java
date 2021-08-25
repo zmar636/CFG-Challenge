@@ -187,6 +187,12 @@ public class AccountsServiceTest {
     assertThat(anotherAccount.getBalance()).isEqualTo(BigDecimal.valueOf(1500));
   }
 
+  /**
+   * 5 threads will transfer an amount from account A to B
+   * 5 threads will transfer an amount from account B to A
+   * This will be a concurrent execution, when their job is done the balance must be the same before the threads execution
+   * @throws InterruptedException
+   */
   @Test
   public void transfer_noDeadLock() throws InterruptedException {
     String uniqueId = UUID.randomUUID().toString();
