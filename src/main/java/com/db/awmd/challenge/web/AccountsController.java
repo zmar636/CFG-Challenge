@@ -49,18 +49,9 @@ public class AccountsController {
   }
 
   @PostMapping(value = "/transfer", consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Object> transfer(@RequestBody @Valid Transfer transfer) {
-    try {
-      accountsService.transfer(transfer.getAccountFromId(),transfer.getAccountToId(), transfer.getAmount());
-    } catch (InsufficientFundsException e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    } catch (NonexistentAccountException e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    } catch (InvalidAmountTransferException e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    } catch (SameAccountTransferException e) {
-      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+  public ResponseEntity<Object> transfer(@RequestBody @Valid Transfer transfer) throws InvalidAmountTransferException, SameAccountTransferException, InsufficientFundsException, NonexistentAccountException {
+
+    accountsService.transfer(transfer.getAccountFromId(),transfer.getAccountToId(), transfer.getAmount());
     return new ResponseEntity<>(HttpStatus.OK);
   }
 
