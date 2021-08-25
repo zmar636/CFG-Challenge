@@ -1,6 +1,11 @@
 package com.db.awmd.challenge.exception;
 
-public class InsufficientFundsException extends Exception{
+import java.math.BigDecimal;
 
-    public InsufficientFundsException(String message) {super(message);}
+public class InsufficientFundsException extends Exception {
+
+    public InsufficientFundsException(String accountId, BigDecimal amount) {
+        super("Account: " + accountId +
+                " does not have sufficient funds to perform a transfer of " + amount);
+    }
 }

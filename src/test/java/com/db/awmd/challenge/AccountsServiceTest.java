@@ -194,7 +194,7 @@ public class AccountsServiceTest {
    * @throws InterruptedException
    */
   @Test
-  public void transfer_noDeadLock() throws InterruptedException {
+  public void transfer_multiThreadTransfers() throws InterruptedException {
     String uniqueId = UUID.randomUUID().toString();
     Account account = new Account(uniqueId);
     account.setBalance(new BigDecimal(1000));
@@ -241,6 +241,5 @@ public class AccountsServiceTest {
 
     assertThat(account.getBalance()).isEqualTo(BigDecimal.valueOf(1000));
     assertThat(anotherAccount.getBalance()).isEqualTo(BigDecimal.valueOf(1000));
-
   }
 }

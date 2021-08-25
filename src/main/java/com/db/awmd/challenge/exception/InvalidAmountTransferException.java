@@ -1,6 +1,8 @@
 package com.db.awmd.challenge.exception;
 
-public class InvalidAmountTransferException extends Exception{
+public class InvalidAmountTransferException extends Exception {
 
-    public InvalidAmountTransferException(String message) {super(message);}
+    public InvalidAmountTransferException() {
+        super("Transfer amount must be bigger than 0");
+    }
 }
