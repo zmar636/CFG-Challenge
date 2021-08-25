@@ -7,8 +7,8 @@ On functional level this application could grow to handle more complex and secur
 * Users should be able to login and see their balance
 * We could also use create an entity for tracking transfers
 
-On a 
+On a Infra-structure level
 * App should be containarized using docker compose or a DockerFile and deployed on a container-orchestration system automating computer application deployment, scaling, and management
-* Use Jenkins to build, test, and deploy for continuous integration and continuous delivery.
-* Use Swagger for documentation.
+* Use Jenkins to build, test, and deploy for continuous integration and continuous delivery(following a proper git flow).
+* Use Swagger to document API's
 * Use Spring Boot Actuator for health and metrics of the application.
