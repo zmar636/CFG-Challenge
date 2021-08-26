@@ -13,4 +13,4 @@ On a Infra-structure level
 * Use Swagger to document API's
 * Use Spring Boot Actuator for health and metrics of the application.
 
-Also the use of Agile Methodology is important to improve effectiveness of the developers.
+Also the use of Agile Methodology is important to improve effectiveness of the developers and to have a work flow where is easier to ship better software solutions.
