@@ -51,18 +51,14 @@ public class AccountsService {
             throw new InvalidAmountTransferException();
         }
 
-        if (fromAccount.getBalance().compareTo(amount) < 0) {
-            throw new InsufficientFundsException(accountFromId, amount);
-        }
-
         synchronized (fromAccount) {
-            fromAccount.setBalance(fromAccount.getBalance().subtract(amount));
+            fromAccount.withdraw(amount);
         }
 
         Account accountTo = getAccount(accountToId);
 
         synchronized (accountTo) {
-            accountTo.setBalance(accountTo.getBalance().add(amount));
+            accountTo.deposit(amount);
         }
 
         notificationService.notifyAboutTransfer(fromAccount, "Debit of " + amount + " to account: " + accountToId);
